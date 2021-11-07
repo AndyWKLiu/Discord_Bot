@@ -17,7 +17,7 @@ async def on_ready():
     #You can adjust the message below to be anything you want. I just wanted this to be a goofy project :D
     print("B0b is online, welcome MrWaffles")
 
-#Line 23 to line 40 is the code that allows B0b to respond to you when you say one of the three things in line 23. 
+#Line 23 to line 41 is the code that allows B0b to respond to you when you say one of the three things in line 23. 
 #B0b will randomly respond with one of his options in line 25
 #Again, the messages in line 25 and 26 can be anything you want
 @client.event 
@@ -39,17 +39,17 @@ async def on_message(text):
     if text.content.startswith("B0b Attendance"):
         await text.channel.send("@everyone" + " Roll call!")
 
-#Line 43 to line 82 is the first game I created. Rock Paper Scissor
+#Line 43 to line 83 is the first game I created. Rock Paper Scissor
 @client.command()
 async def game1(general, message):
-    #Line 46 takes in the user's message than lowercases it to match on of the options in line 47
+    #Line 46 takes in the user's message than lowercases it to match on of the options in line 48
     user = message.lower()
     rock_paper_scissor_game_options = ["rock", "paper", "scissor"]
-    #Line 49 allows B0b to randomly pick one of the options in line 47 to use for the game
+    #Line 50 allows B0b to randomly pick one of the options in line 47 to use for the game
     B0b_choice_for_rock_paper_scissor = random.choice(rock_paper_scissor_game_options)
-    #Line 53 to line 84 is composed of if, else, and else if statements
-    #Line 53 to line 55 makes B0b tell the user the message in line 53 if they did not pick one of the three options in line 47
-    #If the user did pick one of the three optiions, they can move on to line 56 to line 77
+    #Line 53 to line 83 is composed of if, else, and else if statements
+    #Line 53 to line 55 makes B0b inform the user the message in line 54 if they did not pick one of the three options in line 47
+    #If the user did pick one of the three optiions, they can move on to line 57 to line 83
     if user not in rock_paper_scissor_game_options:
         await general.send("Pick rock, paper, or scissor boss")
         return
@@ -60,7 +60,7 @@ async def game1(general, message):
             await general.send("Tie")
 
         #Line 64 to line 66 is when the user chose paper and B0b chose scissor
-        #B0b will print line 66 when this occurs    
+        #B0b will print line 67 when this occurs    
         elif user == "paper":
             if B0b_choice_for_rock_paper_scissor == "scissor":
                 await general.send("Yaaaay I win")
@@ -78,12 +78,11 @@ async def game1(general, message):
         #Line 79 to line 83 is repeat of the code above as well but when the user chooses rock
         elif user == "rock":
             if B0b_choice_for_rock_paper_scissor == "paper":
-                await general.send("Never give up" + str(message.author))
+                await general.send("Never give up")
             if B0b_choice_for_rock_paper_scissor == "scissor":
                 await general.send("I'm gonna tell MrWaffles to make me win all the time >:(")
-    await client.process_commands(message)
 
-#Line 90 to line 128 is the second game I created. Heads or tails
+#Line 89 to line 127 is the second game I created. Heads or tails
 #The concept is the same as the rock paper scissor game, but it also includes the choice the computer makes as the user is competing against B0b on who guesses correctly.
 #The computer decides whether it lands on heads or tails. 
 #The "and" statement is used so it has to pass through both parameters for the code within to work
@@ -127,12 +126,12 @@ async def game2(general, message):
                 await general.send("It landed on: " + computer_choice_for_heads_tails)
                 await general.send("Andy should pay me for winning this many times😎 ")
 
-#Line 132 to line 135 is the code that informs the user of B0b's purpose and his functions. 
+#Line 131 to line 134 is the code that informs the user of B0b's purpose and his functions. 
 #Simply say !please_help
 @client.command()
 async def please_help(message):
     await message.send("I am a Bot that Andy made for a fun side project.")
     await message.send("(1)!game1 is rock paper scissor. Simply say !game1 followed by either rock, paper, or scissor to play against me. \n(2)!game2 is heads or tails. Simply say !game2 followed by either heads or tails to try your luck :D.")
 
-#Line 138 runs the token you created. I have this stored in another file so no one can change Bob's function.
+#Line 137 runs the token you created. I have this stored in another file so no one can change Bob's function.
 client.run(config.Secret)
