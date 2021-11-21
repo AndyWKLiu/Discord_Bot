@@ -17,7 +17,7 @@ async def on_ready():
     #You can adjust the message below to be anything you want. I just wanted this to be a goofy project :D
     print("B0b is online, welcome MrWaffles")
 
-#Line 23 to line 41 is the code that allows B0b to respond to you when you say one of the three things in line 23. 
+#Line 23 to line 42 is the code that allows B0b to respond to you when you say one of the three things in line 23. 
 #B0b will randomly respond with one of his options in line 25
 #Again, the messages in line 25 and 26 can be anything you want
 @client.event 
@@ -41,52 +41,55 @@ async def on_message(text):
     
     await client.process_commands(text)
 
-#Line 43 to line 83 is the first game I created. Rock Paper Scissor
+#Line 45 to line 85 is the first game I created. Rock Paper Scissor
 @client.command()
 async def game1(general, message):
-    #Line 46 takes in the user's message than lowercases it to match on of the options in line 48
+    #Line 48 takes in the user's message than lowercases it to match on of the options in line 49
     user = message.lower()
     rock_paper_scissor_game_options = ["rock", "paper", "scissor"]
-    #Line 50 allows B0b to randomly pick one of the options in line 47 to use for the game
+    #Line 51 allows B0b to randomly pick one of the options in line 49 to use for the game
     B0b_choice_for_rock_paper_scissor = random.choice(rock_paper_scissor_game_options)
-    #Line 53 to line 83 is composed of if, else, and else if statements
-    #Line 53 to line 55 makes B0b inform the user the message in line 54 if they did not pick one of the three options in line 47
-    #If the user did pick one of the three optiions, they can move on to line 57 to line 83
+    #Line 55 to line 85 is composed of if, else, and else if statements
+    #Line 55 to line 57 makes B0b inform the user the message in line 56 if they did not pick one of the three options in line 49
+    #If the user did pick one of the three optiions, they can move on to line 58 to line 85
     if user not in rock_paper_scissor_game_options:
         await general.send("Pick rock, paper, or scissor boss")
         return
     else:
-        #Line 58 to line 60 is the code used when B0b and the user chose the same option
+        #Line 60 to line 62 is the code used when B0b and the user chose the same option
         await general.send(B0b_choice_for_rock_paper_scissor)
         if B0b_choice_for_rock_paper_scissor == user:
             await general.send("Tie")
 
-        #Line 64 to line 66 is when the user chose paper and B0b chose scissor
+        #Line 66 to line 68 is when the user chose paper and B0b chose scissor
         #B0b will print line 67 when this occurs    
         elif user == "paper":
             if B0b_choice_for_rock_paper_scissor == "scissor":
                 await general.send("Yaaaay I win")
-            #Line 68 to line 69 is the outcome when user chooeses paper and B0b chooses rock
+            #Line 70 to line 71 is the outcome when user chooeses paper(line 66) and B0b chooses rock
             if B0b_choice_for_rock_paper_scissor == "rock":
                 await general.send("You cheated...somehow")
         
-        #Line 72 to line 76 is repeat of the code above but when the user chooses scissor
+        #Line 74 to line 78 is repeat of the code above but when the user chooses scissor
         elif user == "scissor":
             if B0b_choice_for_rock_paper_scissor == "rock":
                 await general.send("I know you can do better")
             if B0b_choice_for_rock_paper_scissor == "paper":
                 await general.send("cheater")
         
-        #Line 79 to line 83 is repeat of the code above as well but when the user chooses rock
+        #Line 80 to line 85 is repeat of the code above as well but when the user chooses rock
         elif user == "rock":
             if B0b_choice_for_rock_paper_scissor == "paper":
                 await general.send("Never give up")
             if B0b_choice_for_rock_paper_scissor == "scissor":
                 await general.send("I'm gonna tell MrWaffles to make me win all the time >:(")
 
+#Line 88 to line 122 is basically the code for the rock, paper, scissors game; however, the words are replaced with emojis
 @client.command()
 async def game1emoji(general, message):
     user = message
+    #You can acquire the emojis I used from https://emojipedia.org/
+        #Copy and paste the emoji from their website into the code
     rock_paper_scissor_game_options_emoji_version = ["✂️", "🧻", "🪨"]
     B0b_choice_for_rock_paper_scissor_game_emoji_version = random.choice(rock_paper_scissor_game_options_emoji_version)
     if user not in rock_paper_scissor_game_options_emoji_version:
@@ -100,28 +103,28 @@ async def game1emoji(general, message):
         elif user == "🧻":
             if B0b_choice_for_rock_paper_scissor_game_emoji_version == "✂️":
                 await general.send("Yaaaay I win")
-            #Line 68 to line 69 is the outcome when user chooeses paper and B0b chooses rock
+            #Line 107 to line 108 is the outcome when user chooeses paper(line 103) and B0b chooses rock
             if B0b_choice_for_rock_paper_scissor_game_emoji_version == "🪨":
                 await general.send("You cheated...somehow")
         
-        #Line 72 to line 76 is repeat of the code above but when the user chooses scissor
+        #Line 111 to line 115 is repeat of the code above but when the user chooses scissor
         elif user == "✂️":
             if B0b_choice_for_rock_paper_scissor_game_emoji_version == "🪨":
                 await general.send("I know you can do better")
             if B0b_choice_for_rock_paper_scissor_game_emoji_version == "🧻":
                 await general.send("cheater")
         
-        #Line 79 to line 83 is repeat of the code above as well but when the user chooses rock
+        #Line 118 to line 122 is repeat of the code above as well but when the user chooses rock
         elif user == "🪨":
             if B0b_choice_for_rock_paper_scissor_game_emoji_version == "🧻":
                 await general.send("Never give up")
             if B0b_choice_for_rock_paper_scissor_game_emoji_version == "✂️":
                 await general.send("I'm gonna tell MrWaffles to make me win all the time >:(")
    
-#Line 89 to line 127 is the second game I created. Heads or tails
-#The concept is the same as the rock paper scissor game, but it also includes the choice the computer makes as the user is competing against B0b on who guesses correctly.
+#Line 128 to line 166 is the second game I created. Heads or tails
+#The concept is the same as the rock, paper, and scissor game, but it also includes the choice the computer makes as the user is competing against B0b on who guesses correctly.
 #The computer decides whether it lands on heads or tails. 
-#The "and" statement is used so it has to pass through both parameters for the code within to work
+#The "and" statement is used so it has to pass through both conditions for the code within to work
 @client.command()
 async def game2(general, message):
     user = message.lower()
@@ -162,12 +165,12 @@ async def game2(general, message):
                 await general.send("It landed on: " + computer_choice_for_heads_tails)
                 await general.send("Andy should pay me for winning this many times😎 ")
   
-#Line 131 to line 134 is the code that informs the user of B0b's purpose and his functions. 
+#Line 170 to line 173 is the code that informs the user of B0b's purpose and his functions. 
 #Simply say !please_help
 @client.command()
 async def please_help(message):
     await message.send("I am a Bot that Andy made for a fun side project.")
-    await message.send("(1)!game1 is rock paper scissor. Simply say !game1 followed by either rock, paper, or scissor to play against me. \n(2)!game2 is heads or tails. Simply say !game2 followed by either heads or tails to try your luck :D.")
+    await message.send("(1)!game1 is rock paper scissor. Simply say !game1 followed by either rock, paper, or scissor to play against me. \n(1.5)!game1emoji is the emoji version of rock, paper, and scissors game. Simply say !game1emoji followed by either the rock, paper, or scissors emoji to play against me. \n(2)!game2 is heads or tails. Simply say !game2 followed by either heads or tails to try your luck :D.")
 
-#Line 137 runs the token you created. I have this stored in another file so no one can change Bob's function.
+#Line 176 runs the token you created. I have this stored in another file so no one can change Bob's function.
 client.run(config.Secret)
